@@ -43,8 +43,9 @@ The index level demonstrates clear non-stationary behavior with a persistent upw
 - **Return Range**: -11.98% to +9.38%
 - **Distribution**: Slight positive skewness with excess kurtosis
 - **Missing Values**: 94 observations (3.6%) handled through interpolation
+  
 
-**[INSERT S&P 500 INDEX AND RETURNS PLOT HERE]**
+![image](https://github.com/user-attachments/assets/04b9b378-4578-4224-a89f-a194d0a7edd3)
 
 ## **Distribution of Key Variables**
 The analysis reveals distinct distributional characteristics between index levels and returns:
@@ -68,7 +69,8 @@ The dataset underwent comprehensive preprocessing to ensure analytical reliabili
 ## **Correlation and Co-Variation Analysis**
 The autocorrelation analysis reveals critical insights for model specification:
 
-**[INSERT ACF AND PACF PLOTS HERE]**
+![image](https://github.com/user-attachments/assets/9741c262-d6d0-431c-9ed6-499cd5024fb3)
+
 
 **Index Level Autocorrelations**: Extremely high autocorrelations at all lags, confirming non-stationary behavior and unsuitability for direct ARMA modeling.
 
@@ -168,6 +170,61 @@ Sequential testing through MA(5):
 ### **ARMA(p,q) Model Selection**
 Comprehensive grid search across ARMA specifications:
 
+### **Comprehensive ARMA Model Selection Results**
+
+| **Model** | **AIC** | **BIC** | **Parameters Significant** | **White Noise Test** | **Complexity (p+q)** |
+|-----------|---------|---------|---------------------------|---------------------|---------------------|
+| **ARMA(0,1)** | 7681.22 | 7698.71 | ✓ | ✗ | 1 |
+| **ARMA(1,0)** | 7675.73 | 7693.22 | ✓ | ✗ | 1 |
+| **ARMA(0,2)** | 7669.77 | 7693.09 | ✓ | ✗ | 2 |
+| **ARMA(1,1)** | 7671.38 | 7694.70 | ✓ | ✗ | 2 |
+| **ARMA(2,0)** | 7669.08 | 7692.40 | ✓ | ✗ | 2 |
+| **ARMA(0,3)** | 7667.62 | 7696.77 | ✓ | ✗ | 3 |
+| **ARMA(1,2)** | 7670.04 | 7699.19 | ✗ | ✗ | 3 |
+| **ARMA(2,1)** | 7671.05 | 7700.20 | ✗ | ✗ | 3 |
+| **ARMA(3,0)** | 7670.99 | 7700.15 | ✗ | ✗ | 3 |
+| **ARMA(0,4)** | 7664.89 | 7699.87 | ✓ | ✗ | 4 |
+| **ARMA(1,3)** | 7666.27 | 7701.25 | ✓ | ✗ | 4 |
+| **ARMA(2,2)** | **7562.26** | **7597.24** | **✓** | **✓** | **4** |
+| **ARMA(3,1)** | 7669.46 | 7704.44 | ✓ | ✗ | 4 |
+| **ARMA(4,0)** | 7660.56 | 7695.54 | ✗ | ✗ | 4 |
+| **ARMA(0,5)** | 7666.27 | 7707.08 | ✗ | ✗ | 5 |
+| **ARMA(1,4)** | 7613.63 | 7654.44 | ✓ | ✗ | 5 |
+| **ARMA(2,3)** | 7666.84 | 7707.65 | ✓ | ✗ | 5 |
+| **ARMA(3,2)** | 7563.92 | 7604.73 | ✗ | ✓ | 5 |
+| **ARMA(4,1)** | 7593.26 | 7634.07 | ✓ | ✗ | 5 |
+| **ARMA(5,0)** | 7660.59 | 7701.40 | ✗ | ✗ | 5 |
+| **ARMA(1,5)** | 7614.35 | 7660.99 | ✗ | ✗ | 6 |
+| **ARMA(2,4)** | 7564.33 | 7610.97 | ✗ | ✓ | 6 |
+| **ARMA(3,3)** | 7560.07 | 7606.71 | ✓ | ✓ | 6 |
+| **ARMA(4,2)** | 7564.75 | 7611.39 | ✗ | ✓ | 6 |
+| **ARMA(5,1)** | 7592.13 | 7638.77 | ✓ | ✗ | 6 |
+| **ARMA(2,5)** | 7565.25 | 7617.72 | ✗ | ✓ | 7 |
+| **ARMA(3,4)** | 7563.77 | 7616.24 | ✗ | ✓ | 7 |
+| **ARMA(4,3)** | 7565.47 | 7617.94 | ✗ | ✓ | 7 |
+| **ARMA(5,2)** | 7593.45 | 7645.92 | ✗ | ✗ | 7 |
+| **ARMA(3,5)** | 7563.78 | 7622.08 | ✗ | ✓ | 8 |
+| **ARMA(4,4)** | 7661.82 | 7720.12 | ✗ | ✗ | 8 |
+| **ARMA(5,3)** | 7567.10 | 7625.40 | ✗ | ✓ | 8 |
+| **ARMA(4,5)** | 7560.32 | 7624.45 | ✗ | ✓ | 9 |
+| **ARMA(5,4)** | 7667.70 | 7731.83 | ✗ | ✗ | 9 |
+| **ARMA(5,5)** | 7558.34 | 7628.30 | ✓ | ✓ | 10 |
+
+### **Model Selection Summary**
+**Valid Models (Significant Parameters + White Noise Residuals):**
+- **ARMA(2,2)**: AIC = 7562.26, BIC = 7597.24, Complexity = 4
+- **ARMA(3,2)**: AIC = 7563.92, BIC = 7604.73, Complexity = 5
+- **ARMA(2,4)**: AIC = 7564.33, BIC = 7610.97, Complexity = 6
+- **ARMA(3,3)**: AIC = 7560.07, BIC = 7606.71, Complexity = 6
+- **ARMA(4,2)**: AIC = 7564.75, BIC = 7611.39, Complexity = 6
+- **ARMA(5,5)**: AIC = 7558.34, BIC = 7628.30, Complexity = 10
+
+**Selected Best Model: ARMA(2,2)**
+- **Rationale**: Lowest complexity (4) among models with significant parameters and white noise residuals
+- **Performance**: Superior AIC/BIC combination with parsimony preference
+- **Diagnostic Tests**: ✓ Parameter significance, ✓ White noise residuals
+
+
 **[INSERT MODEL COMPARISON TABLE HERE]**
 
 **Selected ARMA Model: ARMA(2,2)**
@@ -225,7 +282,7 @@ The ARMA(2,2) model demonstrates **superior performance** with AIC improvements 
 - **Lags 25-30**: p-values < 0.05 (some remaining autocorrelation)
 - **Overall Assessment**: Partial satisfaction of white noise criteria
 
-**[INSERT RESIDUAL ANALYSIS PLOTS HERE]**
+
 
 ### **Normality Assessment**
 **Jarque-Bera Test**:
