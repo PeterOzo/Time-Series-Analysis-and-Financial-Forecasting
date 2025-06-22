@@ -225,8 +225,6 @@ Comprehensive grid search across ARMA specifications:
 - **Diagnostic Tests**: ✓ Parameter significance, ✓ White noise residuals
 
 
-**[INSERT MODEL COMPARISON TABLE HERE]**
-
 **Selected ARMA Model: ARMA(2,2)**
 - **AR Coefficients**: φ1 = -1.7421, φ2 = -0.8763
 - **MA Coefficients**: θ1 = 1.6465, θ2 = 0.7568
