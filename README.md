@@ -1,4 +1,4 @@
-## Time Series Analysis & Financial Forecasting 
+## Time Series Analysis & Financial Forecasting  
 *Advanced Quantitative Methods and Machine Learning in Finance*
 
 ## **Business Question**
